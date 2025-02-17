@@ -1,11 +1,14 @@
 import './App.css';
 import React from 'react';
-
-import Loading from '../components/Loading/Loading';
+import { Provider } from 'react-redux';
+import store from './store';
+import HomePage from '../components/HomePage/HomePage';
 
 function App() {
   return (
-    <Loading />
+    <Provider store={store}>
+      <HomePage />
+    </Provider>
   );
 }
 
