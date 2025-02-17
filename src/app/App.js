@@ -1,11 +1,11 @@
 import './App.css';
 import React from 'react';
 
-import Error from '../components/Error/Error';
+import Loading from '../components/Loading/Loading';
 
 function App() {
   return (
-    <Error />
+    <Loading />
   );
 }
 
