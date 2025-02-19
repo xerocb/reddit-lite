@@ -1,14 +1,21 @@
 import './App.css';
 import React from 'react';
-import { Provider } from 'react-redux';
-import store from './store';
 import HomePage from '../components/HomePage/HomePage';
+import PostPage from '../components/PostPage/PostPage';
+import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from 'react-router-dom';
 
 function App() {
+  const router = createBrowserRouter(
+    createRoutesFromElements(
+      <>
+        <Route path='/' element={<HomePage />} />
+        <Route path='/post/:id' element={<PostPage />} />
+      </>
+    )
+  );
+
   return (
-    <Provider store={store}>
-      <HomePage />
-    </Provider>
+    <RouterProvider router={router} />
   );
 }
 

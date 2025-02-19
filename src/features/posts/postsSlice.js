@@ -3,14 +3,13 @@ import { getPostsFromSearchTerm } from '../../utils/redditApi';
 
 export const getPosts = createAsyncThunk('posts/getPosts', async (searchTerm) => {
     const posts = await getPostsFromSearchTerm(searchTerm);
-    return posts;
+    return posts.map((post) => post.data);
 });
 
 const postsSlice = createSlice({
     name: 'posts',
     initialState: {
         posts: [],
-        selectedPost: {},
         searchTerm: '',
         hasError: false,
         isLoading: false
@@ -18,9 +17,6 @@ const postsSlice = createSlice({
     reducers: {
         setSearchTerm: (state, action) => {
             state.searchTerm = action.payload;
-        },
-        setSelectedPost: (state, action) => {
-            state.selectedPost = action.payload;
         }
     },
     extraReducers: (builder) => {
@@ -41,5 +37,5 @@ const postsSlice = createSlice({
     }
 });
 
-export const { setSearchTerm, setSelectedPost } = postsSlice.actions;
+export const { setSearchTerm } = postsSlice.actions;
 export default postsSlice.reducer;
