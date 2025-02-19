@@ -1,15 +1,22 @@
 import React from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import styles from './Post.module.css';
 
 function Post({ key, post }) {
     return (
-        <Link to={`/post/${post.id}`}>
-            <p>Title: {post.title}</p>
-            <img src={post.url} alt='' />
-            <p>Author: {post.author}</p>
-            <p>Time of Post: {moment.unix(post.created_utc).fromNow()}</p>
-            <p>Num Comments: {post.num_comments}</p>
+        <Link className={styles.link} to={`/post/${post.id}`}>
+            <div className={styles.container}>
+                <div className={styles.main}>
+                    <p className={styles.title}>{post.title}</p>
+                    <img src={post.url} alt='' className={styles.image} />
+                </div>
+                <div className={styles.meta}>
+                    <p>u/{post.author}</p>
+                    <p>{moment.unix(post.created_utc).fromNow()}</p>
+                    <p>{post.num_comments} comments</p>
+                </div>
+            </div>
         </Link>
     );
 }

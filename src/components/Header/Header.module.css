@@ -1,5 +1,8 @@
 .header {
     display: flex;
+    background-color: #ffffff;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
 }
 
 .gap {
@@ -12,8 +15,16 @@
     font-weight: bolder;
 }
 
+.home:hover {
+    filter: brightness(80%);
+}
+
 .lite {
-    color: rgb(77, 77, 77);
+    color: #444444;
+}
+
+.lite:hover {
+    filter: brightness(80%);
 }
 
 .link {
