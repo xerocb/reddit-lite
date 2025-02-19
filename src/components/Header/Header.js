@@ -2,15 +2,17 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { getPosts } from "../../features/posts/postsSlice";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Header() {
     const [searchTerm, setSearchTerm] = useState('');
     const dispatch = useDispatch();
+    const navigate = useNavigate();
 
     const handleSubmit = (e) => {
         e.preventDefault();
         dispatch(getPosts(searchTerm));
+        navigate('/');
     };
 
     return (

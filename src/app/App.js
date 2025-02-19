@@ -1,10 +1,18 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect } from 'react';
 import HomePage from '../components/HomePage/HomePage';
 import PostPage from '../components/PostPage/PostPage';
 import { createBrowserRouter, createRoutesFromElements, RouterProvider, Route } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
+import { getPosts } from '../features/posts/postsSlice';
 
 function App() {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(getPosts(''));
+  },[]);
+
   const router = createBrowserRouter(
     createRoutesFromElements(
       <>
