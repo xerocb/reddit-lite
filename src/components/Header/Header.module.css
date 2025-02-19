@@ -1,0 +1,36 @@
+.header {
+    display: flex;
+}
+
+.gap {
+    flex-grow: 1;
+}
+
+.home {
+    font-size: 2rem;
+    color: rgb(221, 144, 0);
+    font-weight: bolder;
+}
+
+.lite {
+    color: rgb(77, 77, 77);
+}
+
+.link {
+    text-decoration: none;
+    padding: 1rem;
+    text-align: center;
+}
+
+.search {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 1.5rem;
+    padding: 1rem;
+}
+
+.search input,
+.search button {
+    padding: 0.5rem;
+}
