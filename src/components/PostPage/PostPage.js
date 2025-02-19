@@ -6,10 +6,14 @@ import Comment from "../Comment/Comment";
 import { getComments } from "../../features/posts/postsSlice";
 import Header from "../Header/Header";
 import ReactMarkdown from 'react-markdown';
+import Loading from "../Loading/Loading";
+import Error from "../Error/Error";
 
 function PostPage() {
     const { id } = useParams();
     const post = useSelector((state) => state.posts.posts.find(post => post.id === id));
+    const isLoading = useSelector((state) => state.posts.isLoading);
+    const hasError = useSelector((state) => state.posts.hasError);
 
     const dispatch = useDispatch();
 
@@ -18,6 +22,24 @@ function PostPage() {
     },[dispatch, post]);
 
     const comments = useSelector((state) => state.posts.comments);
+
+    if (isLoading) {
+        return (
+            <>
+                <Header />
+                <Loading />
+            </>
+        );
+    }
+
+    if (hasError) {
+        return (
+            <>
+                <Header />
+                <Error />
+            </>
+        );
+    }
 
     return (
         <>
