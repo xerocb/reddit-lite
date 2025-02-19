@@ -1,41 +1,54 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getPostsFromSearchTerm } from '../../utils/redditApi';
+import { getCommentsFromPermalink, getPostsFromSearchTerm } from '../../utils/redditApi';
 
 export const getPosts = createAsyncThunk('posts/getPosts', async (searchTerm) => {
     const posts = await getPostsFromSearchTerm(searchTerm);
     return posts.map((post) => post.data);
 });
 
+export const getComments = createAsyncThunk('posts/getComments', async (permalink) => {
+	const comments = await getCommentsFromPermalink(permalink);
+	return comments.map((comment) => comment.data);
+})
+
 const postsSlice = createSlice({
     name: 'posts',
     initialState: {
         posts: [],
-        searchTerm: '',
+		comments: [],
         hasError: false,
         isLoading: false
     },
-    reducers: {
-        setSearchTerm: (state, action) => {
-            state.searchTerm = action.payload;
-        }
-    },
     extraReducers: (builder) => {
         builder
-          .addCase(getPosts.pending, (state, action) => {
-            state.hasError = false;
-            state.isLoading = true;
-          })
           .addCase(getPosts.fulfilled, (state, action) => {
-            state.hasError = false;
-            state.isLoading = false;
             state.posts = action.payload;
           })
-          .addCase(getPosts.rejected, (state, action) => {
-            state.hasError = true;
-            state.isLoading = false;
-          });
+          .addCase(getComments.fulfilled, (state, action) => {
+			state.comments = action.payload;
+		  })
+		  .addMatcher(
+			(action) => action.type.endsWith('/pending'),
+			(state) => {
+				state.hasError = false;
+				state.isLoading = true;
+			}
+		  )
+		  .addMatcher(
+			(action) => action.type.endsWith('/fulfilled'),
+			(state) => {
+				state.hasError = false;
+				state.isLoading = true;
+			}
+		  )
+		  .addMatcher(
+			(action) => action.type.endsWith('/rejected'),
+			(state) => {
+				state.hasError = true;
+				state.isLoading = false;
+			}
+		  )
     }
 });
 
-export const { setSearchTerm } = postsSlice.actions;
 export default postsSlice.reducer;
