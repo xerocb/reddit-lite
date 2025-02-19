@@ -5,6 +5,7 @@ import moment from "moment";
 import Comment from "../Comment/Comment";
 import { getComments } from "../../features/posts/postsSlice";
 import Header from "../Header/Header";
+import ReactMarkdown from 'react-markdown';
 
 function PostPage() {
     const { id } = useParams();
@@ -23,7 +24,7 @@ function PostPage() {
             <Header />
             <p>Title: {post.title}</p>
             <img src={post.url} alt='' />
-            <p>Body: {post.selftext}</p>
+            <ReactMarkdown children={post.selftext} />
             <p>Author: {post.author}</p>
             <p>Time of Post: {moment.unix(post.created_utc).fromNow()}</p>
             <p>Num Comments: {post.num_comments}</p>

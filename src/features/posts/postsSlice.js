@@ -38,7 +38,7 @@ const postsSlice = createSlice({
 			(action) => action.type.endsWith('/fulfilled'),
 			(state) => {
 				state.hasError = false;
-				state.isLoading = true;
+				state.isLoading = false;
 			}
 		  )
 		  .addMatcher(
