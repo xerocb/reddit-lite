@@ -2,16 +2,33 @@ import React, { useEffect, useState } from "react";
 import { useDispatch } from "react-redux";
 
 import { getPosts } from "../../features/posts/postsSlice";
+import { Link } from "react-router-dom";
 
 function Header() {
-    const [localSearch, setLocalSearch] = useState('');
+    const [searchTerm, setSearchTerm] = useState('');
     const dispatch = useDispatch();
 
-    useEffect(() => {
-        dispatch(getPosts(localSearch));
-    },[dispatch, localSearch]);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        dispatch(getPosts(searchTerm));
+    };
 
-    return <p>Header</p>;
+    return (
+        <>
+            <Link to='/'>
+                <>
+                    <p>reddit<span id='lite'>lite</span></p>
+                </>
+            </Link>
+            <input
+                type='text'
+                placeholder="search"
+                value={searchTerm}
+                onChange={(e) => setSearchTerm(e.target.value)} 
+            />
+            <button type='submit' onClick={handleSubmit}>Search</button>
+        </>
+    );
 }
 
 export default Header;

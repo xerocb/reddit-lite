@@ -4,6 +4,7 @@ import { useParams } from "react-router-dom";
 import moment from "moment";
 import Comment from "../Comment/Comment";
 import { getComments } from "../../features/posts/postsSlice";
+import Header from "../Header/Header";
 
 function PostPage() {
     const { id } = useParams();
@@ -19,6 +20,7 @@ function PostPage() {
 
     return (
         <>
+            <Header />
             <p>Title: {post.title}</p>
             <img src={post.url} alt='' />
             <p>Body: {post.selftext}</p>
