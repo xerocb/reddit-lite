@@ -8,7 +8,7 @@ function Post({ key, post }) {
         <Link className={styles.link} to={`/post/${post.id}`}>
             <div className={styles.container}>
                 <div className={styles.main}>
-                    <p className={styles.title}>{post.title}</p>
+                    <h2 className={styles.title}>{post.title}</h2>
                     <img src={post.url} alt='' className={styles.image} />
                 </div>
                 <div className={styles.meta}>

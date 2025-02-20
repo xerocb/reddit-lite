@@ -18,7 +18,7 @@ function Header() {
     return (
         <div className={styles.header}>
             <Link className={styles.link} to='/'>
-                    <p className={styles.home}>reddit<span className={styles.lite}>lite</span></p>
+                    <h1 className={styles.home}>reddit<span className={styles.lite}>lite</span></h1>
             </Link>
             <div className={styles.gap}></div>
             <div className={styles.search}>

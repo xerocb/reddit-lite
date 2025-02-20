@@ -1,0 +1,23 @@
+.title {
+    font-size: 2rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    color: black;
+}
+
+.main {
+    padding: 2rem;
+    padding-bottom: 0;
+}
+
+.meta {
+    padding: 2rem;
+    padding-bottom: 0;
+    color: #444444
+}
+
+.comments {
+    padding: 2rem;
+    padding-top: 0;
+    color: #444444;
+}

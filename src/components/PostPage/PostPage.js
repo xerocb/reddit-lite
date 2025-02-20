@@ -8,6 +8,7 @@ import Header from "../Header/Header";
 import ReactMarkdown from 'react-markdown';
 import Loading from "../Loading/Loading";
 import Error from "../Error/Error";
+import styles from './PostPage.module.css';
 
 function PostPage() {
     const { id } = useParams();
@@ -44,13 +45,19 @@ function PostPage() {
     return (
         <>
             <Header />
-            <p>Title: {post.title}</p>
-            <img src={post.url} alt='' />
-            <ReactMarkdown children={post.selftext} />
-            <p>Author: {post.author}</p>
-            <p>Time of Post: {moment.unix(post.created_utc).fromNow()}</p>
-            <p>Num Comments: {post.num_comments}</p>
-            {comments.map(comment => <Comment key={comment.id} comment={comment} />)}
+            <div className={styles.meta}>
+                <p>r/{post.subreddit} - {moment.unix(post.created_utc).fromNow()}</p>
+                <p>u/{post.author}</p>
+            </div>
+            <div className={styles.main}>
+                <h2 className={styles.title}>{post.title}</h2>
+                <ReactMarkdown children={post.selftext} />
+                <img src={post.url} alt='' />
+            </div>
+            <div className={styles.comments}>
+                <p>{post.num_comments} comments</p>
+                {comments.map(comment => <Comment key={comment.id} comment={comment} />)}
+            </div>
         </>
     );
 }
