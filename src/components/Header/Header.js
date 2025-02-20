@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { useDispatch } from "react-redux";
 import styles from './Header.module.css';
 import { getPosts } from "../../features/posts/postsSlice";
