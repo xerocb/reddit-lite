@@ -11,7 +11,7 @@ function App() {
 
   useEffect(() => {
     dispatch(getPosts(''));
-  },[]);
+  },[dispatch]);
 
   const router = createBrowserRouter(
     createRoutesFromElements(
